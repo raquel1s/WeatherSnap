@@ -108,8 +108,8 @@ function dataAtual() {
 
 function encontrarDiaSemana(diaSemana) {
     const diasSemana = [
-        "Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira",
-        "Quinta-Feira", "Sexta-Feira", "Sábado"
+        "Domingo", "Segunda", "Terça", "Quarta",
+        "Quinta", "Sexta", "Sábado"
     ];
 
     return diasSemana[diaSemana];
@@ -117,7 +117,7 @@ function encontrarDiaSemana(diaSemana) {
 
 function carregarTela(dados, previsoes) {
     sessaoPrincipal.innerHTML = `
-        <div class="flex flex-row items-center justify-between mx-8 mt-6">
+        <div class="flex flex-col md:flex-row items-center justify-between mx-8 mt-6">
             <div class="flex flex-row gap-2">
                 <h2 class="font-bold text-2xl">${dados.name},</h2>
                 <h2 class="font-bold text-2xl">${dados.sys.country}</h2>
@@ -145,7 +145,7 @@ function carregarTela(dados, previsoes) {
                 </div>
             </div>
         </div>
-        <div id="mensagem" class="mx-8 my-4 py-2 px-2 max-w-2.5 text-center">
+        <div id="mensagem" class="mx-8 my-4 py-4 px-4 max-w-2.5 text-center">
         </div>
         <div class="mx-8 my-8">
             <h3 class="font-semibold">Próximos dias</h3>
@@ -170,16 +170,17 @@ async function carregarCads(dados) {
             card.classList.add('bg-blue-300');
         }
 
-        card.classList.add('flex', 'flex-col', 'items-center', 'p-2');
+        card.classList.add('flex', 'flex-col', 'items-center', 'p-2', 'flex-1');
 
         const semana = new Date(dia.dt_txt);
         const diaSemana = document.createElement('h4');
         diaSemana.textContent = encontrarDiaSemana(semana.getDay());
-        diaSemana.classList.add('font-semibold');
+        diaSemana.classList.add('font-semibold', 'text-sm', 'md:text-base');
         card.appendChild(diaSemana);
 
         const icone = document.createElement('img');
         icone.src = `https://openweathermap.org/img/wn/${dia.weather[0].icon}@2x.png`;
+        icone.classList.add('h-16', 'w-16');
         card.appendChild(icone);
 
         const temp = document.createElement('p');
@@ -206,7 +207,7 @@ async function mensagemDoDia(principal) {
     } else if (principal == 'Clouds') {
         descricao = "O céu está nublado hoje. Pode ser um bom dia para um passeio ou uma atividade interna.";
     } else if (principal == 'Rain') {
-        descricao = "Chuva forte hoje. Melhor ficar em casa ou se for sair, não se esqueça do guarda-chuva!.";
+        descricao = "Chuva forte hoje. Melhor ficar em casa ou se for sair, não se esqueça do guarda-chuva!";
     } else if (principal == 'Drizzle') {
         descricao = "A garoa está suave, mas é bom ter um guarda-chuva por perto!";
     } else if (principal == 'Thunderstorm') {
