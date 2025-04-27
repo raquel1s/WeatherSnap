@@ -149,7 +149,7 @@ function carregarTela(dados, previsoes) {
         </div>
         <div class="mx-8 my-8">
             <h3 class="font-semibold">Próximos dias</h3>
-            <div id="previsao" class="flex flex-row items-center justify-center gap-2 mt-3">
+            <div id="previsao" class="flex flex-row items-center justify-center gap-4 mt-3">
             </div>
         </div>
     `;
@@ -167,7 +167,7 @@ async function carregarCads(dados) {
         if(horario()){
             card.classList.add('bg-blue-600');
         }else{
-            card.classList.add('bg-blue-200');
+            card.classList.add('bg-blue-300');
         }
 
         card.classList.add('flex', 'flex-col', 'items-center', 'p-2');
@@ -198,7 +198,7 @@ async function mensagemDoDia(principal) {
     if(horario()){
         mensagemDiv.classList.add('bg-blue-600');
     }else{
-        mensagemDiv.classList.add('bg-blue-200');
+        mensagemDiv.classList.add('bg-blue-300');
     }
 
     if (principal == 'Clear') {
