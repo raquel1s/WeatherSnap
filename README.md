@@ -5,7 +5,7 @@ WeatherSnap é uma aplicação web que fornece informações meteorológicas em 
 ## Funcionalidades
 - **Atualizações meteorológicas em tempo real**: Exibe o clima atual, e o clima dos próximos 3 dias.
 - **Design responsivo**: Compatível com dispositivos móveis e desktop.
-- **Alternância entre temas claro/escuro**: Alterna o tema com forma a hora do dia (claro/escuro).
+- **Alternância entre temas**: Alterna o tema com forme a hora do dia (claro/escuro).
 
 ## Tecnologias Utilizadas
 - HTML
