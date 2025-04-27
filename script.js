@@ -5,6 +5,24 @@ const btnBuscar = document.getElementById('btnBuscar');
 const btnInicio = document.getElementById('inicio');
 const sessaoPrincipal = document.getElementById('dadosClima');
 
+if(horario()){
+    const fundo = document.getElementsByClassName('bg-blue-500');
+    const componentesPrimarios = document.getElementsByClassName('bg-blue-400');
+    const ComponentesSecundarios = document.getElementsByClassName('bg-blue-300');
+
+    Array.from(fundo).forEach(componente => {
+        componente.classList.add('bg-blue-900');
+    });
+
+    Array.from(componentesPrimarios).forEach(componente => {
+        componente.classList.add('bg-blue-800');
+    });
+
+    Array.from(ComponentesSecundarios).forEach(componente => {
+        componente.classList.add('bg-blue-600');
+    });
+}
+
 btnBuscar.addEventListener('click', async () => {
     const cidade = cidadeInput.value.trim();
     cidadeInput.value = '';
@@ -127,7 +145,7 @@ function carregarTela(dados, previsoes) {
                 </div>
             </div>
         </div>
-        <div id="mensagem" class="mx-8 my-4 bg-blue-200 py-2 px-2 max-w-2.5 text-center">
+        <div id="mensagem" class="mx-8 my-4 py-2 px-2 max-w-2.5 text-center">
         </div>
         <div class="mx-8 my-8">
             <h3 class="font-semibold">Próximos dias</h3>
@@ -145,7 +163,14 @@ async function carregarCads(dados) {
 
     for (let dia of dados) {
         const card = document.createElement('div');
-        card.classList.add('flex', 'flex-col', 'items-center', 'bg-blue-200', 'p-2');
+
+        if(horario()){
+            card.classList.add('bg-blue-600');
+        }else{
+            card.classList.add('bg-blue-200');
+        }
+
+        card.classList.add('flex', 'flex-col', 'items-center', 'p-2');
 
         const semana = new Date(dia.dt_txt);
         const diaSemana = document.createElement('h4');
@@ -170,6 +195,12 @@ async function mensagemDoDia(principal) {
     let descricao = '';
     const mensagemDiv = document.getElementById('mensagem');
 
+    if(horario()){
+        mensagemDiv.classList.add('bg-blue-600');
+    }else{
+        mensagemDiv.classList.add('bg-blue-200');
+    }
+
     if (principal == 'Clear') {
         descricao = "O dia está ensolarado e sem nuvens. Aproveite para sair e desfrutar de atividades ao ar livre!";
     } else if (principal == 'Clouds') {
@@ -191,4 +222,9 @@ async function mensagemDoDia(principal) {
     const mensagem = document.createElement('p');
     mensagem.textContent = descricao;
     mensagemDiv.appendChild(mensagem);
+}
+
+function horario(){
+    const horas = data.getHours();
+    return horas >= 18 && horas < 5;
 }
