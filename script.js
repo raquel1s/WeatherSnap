@@ -40,6 +40,7 @@ cidadeInput.addEventListener('keyup', async (event) => {
         const clima = await buscarClima(cidade);
         const previsoes = await buscarProximosDias(cidade);
         carregarTela(clima, previsoes);
+        console.log(horario());
     }
 });
 
@@ -227,5 +228,5 @@ async function mensagemDoDia(principal) {
 
 function horario(){
     const horas = data.getHours();
-    return horas >= 18 && horas < 5;
+    return horas >= 18 || horas < 5;
 }
