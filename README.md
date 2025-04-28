@@ -14,8 +14,10 @@ WeatherSnap é uma aplicação web que fornece informações meteorológicas em 
 - API OpenWeatherMap
 
 ## Como Rodar
- Clone o repositório:
+- Clone o repositório:
    git clone https://github.com/raquel1s/WeatherSnap.git
+- Ou acesse pelo Vercel:
+   https://weather-snap-nu.vercel.app
 
 ## Feito por
 
