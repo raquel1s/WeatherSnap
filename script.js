@@ -40,7 +40,6 @@ cidadeInput.addEventListener('keyup', async (event) => {
         const clima = await buscarClima(cidade);
         const previsoes = await buscarProximosDias(cidade);
         carregarTela(clima, previsoes);
-        console.log(horario());
     }
 });
 
@@ -78,8 +77,16 @@ async function buscarProximosDias(cidade) {
         const hora = "15:00:00";
 
         for (let dia of dados.list) {
+            // tranforma do data_txt em um data
             const dataDia = new Date(dia.dt_txt);
-            const diferencaDia = (dataDia.getDate() - data.getDate());
+            
+            //pega o ano, o mes, e o dia do dia de hoje, e da dataDia
+            const dataBase = new Date(data.getFullYear(), data.getMonth(), data.getDate());
+            const dataComparar = new Date(dataDia.getFullYear(), dataDia.getMonth(), dataDia.getDate());
+            // calcula a diferença entre elas
+            const diferencaDia = (dataComparar - dataBase) / (1000 * 60 * 60 * 24); 
+            //o js retorna em milisegundos, entao esse caculo divide pela quantidade de milisegundos que tem um dia
+
             const horaDia = dia.dt_txt.split(' ')[1];
 
             if (diferencaDia > 0 && diferencaDia <= 3 && horaDia == hora) {
